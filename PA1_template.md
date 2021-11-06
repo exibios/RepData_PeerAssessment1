@@ -60,7 +60,7 @@ g<-ggplot(data=date_steps,aes(x=steps_by_day) )
 g+geom_histogram(binwidth = 2000,color = "purple", fill="deepskyblue4")+labs(x = "Steps by Day",y="Days", title = "Histogram",subtitle = "Total number of steps taken each day")+theme_minimal()
 ```
 
-![](Assignment_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 3. Calculate and report the mean and median of the total number of steps taken per day
  + mean
@@ -86,6 +86,7 @@ median(date_steps$steps_by_day,na.rm = TRUE)
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e.type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
+
 ```r
 # df_cc is a complete_cases data.fram of df
 date_interval <-
@@ -97,7 +98,7 @@ g<-ggplot(data=date_interval,aes(x=interval,y=steps_avg))
 g+geom_line(linetype="solid",color="deepskyblue4")+theme_minimal()+labs(x = "Intervals",y="Steps Mean", title = "Time series plot",subtitle = "Average number of steps taken, across all days")
 ```
 
-![](Assignment_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 
 
@@ -141,7 +142,7 @@ day_name_interval <-
   summarize(steps_avg = mean(steps))
 ```
 
-We're doing an approach based on *day of the week* and the *minute* interval,using mean
+We're doing an approach based on *day of the week* and the *minute* interval,using mean. 
 **df_cc** is a complete_cases data.frame of **df**
 
 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
@@ -171,7 +172,7 @@ g%>%
 +theme_minimal()
 ```
 
-![](Assignment_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 ```r
 #+geom_vline(xintercept = mean(date_steps$steps_by_day))%>%
@@ -218,7 +219,7 @@ date_steps_3 <-
   df_filled %>%
   group_by(date,weekend) %>%
   summarize(steps_by_day = sum(steps_nona))
-date_steps_3$date <- as.POSIXct(date_steps_2$date)
+date_steps_3$date <- as.POSIXct(date_steps_3$date)
 
 g<-ggplot(data=date_steps_3,aes(x=steps_by_day,group=weekend,fill=weekend) )
 g%>%
@@ -227,7 +228,7 @@ g%>%
 +theme_minimal()
 ```
 
-![](Assignment_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 The weekend days show average steps, on proportion the quantity of days correspond to the 2/7
 
@@ -250,7 +251,7 @@ The weekend days show average steps, on proportion the quantity of days correspo
 ## 4       1       43.1            0                                             32
 ```
 + the mean of week vs weekend shows a visible decrement on weekends
-+ median is a curious value, most of days on average are 0, al least the first half of the **df_filled** dataset
++ median is a curious value, most of days on average are 0, al least the first half of the **df_filled** dataset by each type of weekend factor
 
 
 

@@ -47,6 +47,16 @@ g+geom_histogram(stat= "bin")
 
 #######################################
 
+head(df,100)
+str(df)
 
-rmarkdown::find_pandoc()
+df_cc <- df[complete.cases(df),]
 
+date_interval <-
+  df_cc %>%
+  group_by(interval) %>%
+  summarize(steps_avg = mean(steps))
+
+
+g<-ggplot(data=date_interval,aes(x=interval,y=steps_avg))
+g+geom_line(linetype="solid")+ggtitle("Titulo Aqui")+theme_minimal()

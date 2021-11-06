@@ -269,7 +269,7 @@ count(df[!complete.cases(df),])</code></pre>
   df_cc %&gt;%
   group_by(weekday,interval) %&gt;%
   summarize(steps_avg = mean(steps))</code></pre>
-<p>We’re doing an approach based on <em>day of the week</em> and the <em>minute</em> interval,using mean <strong>df_cc</strong> is a complete_cases data.frame of <strong>df</strong></p>
+<p>We’re doing an approach based on <em>day of the week</em> and the <em>minute</em> interval,using mean. <strong>df_cc</strong> is a complete_cases data.frame of <strong>df</strong></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new dataset that is equal to the original dataset but with the missing data filled in.</li>
 </ol>
@@ -315,7 +315,7 @@ date_steps_3 &lt;-
   df_filled %&gt;%
   group_by(date,weekend) %&gt;%
   summarize(steps_by_day = sum(steps_nona))
-date_steps_3$date &lt;- as.POSIXct(date_steps_2$date)
+date_steps_3$date &lt;- as.POSIXct(date_steps_3$date)
 
 g&lt;-ggplot(data=date_steps_3,aes(x=steps_by_day,group=weekend,fill=weekend) )
 g%&gt;%
@@ -337,7 +337,7 @@ g%&gt;%
 ## 4       1       43.1            0                                             32</code></pre>
 <ul>
 <li>the mean of week vs weekend shows a visible decrement on weekends</li>
-<li>median is a curious value, most of days on average are 0, al least the first half of the <strong>df_filled</strong> dataset</li>
+<li>median is a curious value, most of days on average are 0, al least the first half of the <strong>df_filled</strong> dataset by each type of weekend factor</li>
 </ul>
 </div>
 
